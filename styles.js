@@ -1,11 +1,9 @@
-// styles.js
-
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 28,
+    paddingTop: 50,
     backgroundColor: 'white',
   },
   scrollViewContainer: {
@@ -62,6 +60,18 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontSize: 12,
     textAlign: 'center',
+  },
+  menuOpen: {
+    marginTop: 150, // Ajusta según la altura de la barra de navegación cuando está abierta
+  },
+  contentContainer: {
+    flexGrow: 1,
+    justifyContent: 'center',
+  },
+  content: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20,
   },
 });
 

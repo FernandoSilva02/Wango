@@ -1,16 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { View, StyleSheet } from 'react-native';
 import DashboardScreen from './components/home';
-import './styles.js'
+import Navbar from './components/navbar';
 
 export default function App() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
   return (
     <View style={styles.container}>
-      <DashboardScreen />
-      <StatusBar style="auto" />
+      <DashboardScreen menuOpen={menuOpen} />
+      <Navbar isOpen={menuOpen} toggleMenu={toggleMenu} />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
