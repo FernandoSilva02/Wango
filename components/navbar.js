@@ -1,65 +1,63 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import React from 'react';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
-const MenuHamburguesa = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
-
+const Navbar = ({ isOpen, toggleMenu }) => {
   return (
-    <View style={styles.container}>
-      <TouchableOpacity onPress={toggleMenu} style={styles.menuButton}>
-        <Text style={styles.menuButtonText}>☰</Text>
+    <View style={[styles.container, isOpen ? styles.open : styles.closed]}>
+      <TouchableOpacity onPress={toggleMenu} style={styles.toggleButton}>
+        <Text style={styles.toggleText}>☰</Text>
       </TouchableOpacity>
-      {menuOpen && (
-        <View style={styles.menu}>
-          <TouchableOpacity onPress={toggleMenu} style={styles.menuItem}>
-            <Text style={styles.menuItemText}>Opción 1</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={toggleMenu} style={styles.menuItem}>
-            <Text style={styles.menuItemText}>Opción 2</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={toggleMenu} style={styles.menuItem}>
-            <Text style={styles.menuItemText}>Opción 3</Text>
-          </TouchableOpacity>
-        </View>
-      )}
+      <TouchableOpacity onPress={() => console.log("Menu item 1")} style={styles.menuItem}>
+        <Text style={styles.menuText}>Menu Item 1</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => console.log("Menu item 2")} style={styles.menuItem}>
+        <Text style={styles.menuText}>Menu Item 2</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => console.log("Menu item 3")} style={styles.menuItem}>
+        <Text style={styles.menuText}>Menu Item 3</Text>
+      </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  menuButton: {
     position: 'absolute',
-    top: 40,
-    left: 20,
+    top: 25, // Ajusta según la altura deseada desde la parte superior
+    left: 0,
     zIndex: 1,
+    backgroundColor: '#fff',
+    width: '100%',
+    height: 0,
+    overflow: 'hidden',
+    paddingTop: 50, // Ajusta según la altura del Navbar
+    paddingHorizontal: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: 'gray',
+    transitionProperty: 'height',
+    transitionDuration: '0.5s',
   },
-  menuButtonText: {
+  open: {
+    height: 200, // Altura del Navbar cuando está abierto
+  },
+  closed: {
+    height: 0,
+  },
+  toggleButton: {
+    position: 'absolute',
+    top: 10,
+    right: 20,
+  },
+  toggleText: {
     fontSize: 24,
-  },
-  menu: {
-    position: 'absolute',
-    top: 80,
-    left: 20,
-    backgroundColor: '#ffffff',
-    padding: 10,
-    borderRadius: 5,
-    zIndex: 1,
   },
   menuItem: {
     paddingVertical: 10,
   },
-  menuItemText: {
+  menuText: {
     fontSize: 18,
   },
 });
 
-export default MenuHamburguesa;
+export default Navbar;

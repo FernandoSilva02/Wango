@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, ScrollView, Alert } from 'react-native';
-import styles from '../styles.js'; // Importa los estilos desde el archivo styles.css
+import styles from '../styles'; // Importa los estilos desde el archivo styles.js
 
-const HeaderIcon = ({ imageUrl }) => (
+/*const HeaderIcon = ({ imageUrl }) => (
   <Image source={imageUrl} style={styles.headerIcon} />
-);
+);*/
 
 const FeatureButton = ({ imageUrl, label, onPress }) => (
   <TouchableOpacity onPress={onPress} style={styles.featureButtonContainer}>
@@ -13,15 +13,15 @@ const FeatureButton = ({ imageUrl, label, onPress }) => (
   </TouchableOpacity>
 );
 
-const DashboardScreen = () => {
+const DashboardScreen = ({ menuOpen }) => {
   const onFeaturePress = (label) => {
     Alert.alert("Action", `You tapped on ${label}`);
   };
 
-  const headerIcons = [
+  /*const headerIcons = [
     { id: 1, imageUrl: require('../assets/hamburguer_menu.png') },
     { id: 2, imageUrl: require('../assets/wango_tiny.png') },
-  ];
+  ];*/
 
   const features = [
     { id: 1, imageUrl: require('../assets/mis_lotes.png'), label: "Mis lotes" },
@@ -39,13 +39,9 @@ const DashboardScreen = () => {
   }
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, menuOpen ? styles.menuOpen : null]}>
       <ScrollView contentContainerStyle={styles.scrollViewContainer}>
-        <View style={styles.header}>
-          {headerIcons.map(icon => (
-            <HeaderIcon key={icon.id} imageUrl={icon.imageUrl} />
-          ))}
-        </View>
+        
         <View style={styles.welcomeContainer}>
           <Text style={styles.welcomeText}>¡Bienvenido Carlos Mario!</Text>
           <View style={styles.featuresContainer}>
